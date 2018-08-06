@@ -2,10 +2,10 @@ bitcoind-rpc-alarmx.js
 ===============
 
 [![NPM Package](https://img.shields.io/npm/v/bitcoind-rpc-alarmx.svg?style=flat-square)](https://www.npmjs.org/package/bitcoind-rpc-alarmx)
-[![Build Status](https://img.shields.io/travis/bitpay/bitcoind-rpc-alarmx.svg?branch=master&style=flat-square)](https://travis-ci.org/bitpay/bitcoind-rpc-alarmx)
-[![Coverage Status](https://img.shields.io/coveralls/bitpay/bitcoind-rpc-alarmx.svg?style=flat-square)](https://coveralls.io/r/bitpay/bitcoind-rpc-alarmx?branch=master)
+[![Build Status](https://img.shields.io/travis/alarmxcore/bitcoind-rpc-alarmx.svg?branch=master&style=flat-square)](https://travis-ci.org/alarmxcore/bitcoind-rpc-alarmx)
+[![Coverage Status](https://img.shields.io/coveralls/alarmxcore/bitcoind-rpc-alarmx.svg?style=flat-square)](https://coveralls.io/r/alarmxcore/bitcoind-rpc-alarmx?branch=master)
 
-A client library to connect to Bitcoin Core RPC in JavaScript.
+A client library to connect to Alarmx Core RPC in JavaScript.
 
 ## Get Started
 
@@ -14,6 +14,16 @@ bitcoind-rpc-alarmx.js runs on [node](http://nodejs.org/), and can be installed 
 ```bash
 npm install bitcoind-rpc-alarmx
 ```
+
+## RpcClient
+
+Arguments :
+
+	- protocol : (string - optional) - (default: 'https') - Set the protocol to be used. Either `http` or `https`.
+	- user : (string - optional) - (default: 'user') - Set the user credential.
+	- pass : (string - optional) - (default: 'pass') - Set the password credential.
+	- host : (string - optional) - (default: '127.0.0.1') - The host you want to connect with.
+	- port : (integer - optional) - (default: 9998) - Set the port on which perform the RPC command.
 
 ## Examples
 
@@ -27,7 +37,7 @@ var run = function() {
     user: 'user',
     pass: 'pass',
     host: '127.0.0.1',
-    port: '18332',
+    port: 19998
   };
 
   var rpc = new RpcClient(config);
@@ -70,8 +80,27 @@ var run = function() {
 };
 ```
 
+## Help
+
+You can dynamically access to the help of each method by doing
+```
+const RpcClient = require('bitcoind-rpc-alarmx');
+var client = new RPCclient({
+    protocol:'http',
+    user: 'alarmx',
+    pass: 'local321',
+    host: '127.0.0.1',
+    port: 19998
+});
+
+var cb = function (err, data) {
+    console.log(data)
+};
+client.help(cb); //Get full help
+client.help('getinfo',cb); //Get help of specific method
+```
 ## License
 
-**Code released under [the MIT license](https://github.com/alarmxcore/bitcore/blob/master/LICENSE).**
+**Code released under [the MIT license](https://github.com/bitpay/bitcore/blob/master/LICENSE).**
 
-Copyright 2013-2018 BitPay, Inc.
+Copyright 2013-2014 BitPay, Inc.
